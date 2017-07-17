@@ -1,4 +1,4 @@
-package com.tedmyoung.currencyconverter;
+package io.trampoline.currencyconverter;
 
 import java.math.BigDecimal;
 

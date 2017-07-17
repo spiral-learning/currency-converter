@@ -1,4 +1,4 @@
-package com.tedmyoung.currencyconverter;
+package io.trampoline.currencyconverter;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
