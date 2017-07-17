@@ -13,13 +13,13 @@ import java.math.BigDecimal;
  */
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/convert")
 public class ConversionRestController {
 
-  @GetMapping("convert")
+  @GetMapping
   public ConversionResponse convert(@RequestParam("from") String fromCurrency,
-                      @RequestParam("to") String toCurrency,
-                      @RequestParam("amount") int amount) {
+                                    @RequestParam("to") String toCurrency,
+                                    @RequestParam("amount") int amount) {
     return new ConversionResponse(toCurrency, BigDecimal.valueOf(.765 * amount));
   }
 }
