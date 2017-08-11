@@ -20,6 +20,6 @@ public class ConversionRestController {
   public ConversionResponse convert(@RequestParam("from") String fromCurrency,
                                     @RequestParam("to") String toCurrency,
                                     @RequestParam("amount") int amount) {
-    return new ConversionResponse(toCurrency, BigDecimal.valueOf(.765 * amount));
+    return new ConversionResponse(toCurrency, BigDecimal.valueOf(.7683 * amount));
   }
 }
