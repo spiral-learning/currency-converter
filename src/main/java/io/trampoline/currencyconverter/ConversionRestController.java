@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 
 /**
- * Convert currency via
- * http://www.apilayer.net/api/live?access_key=5eea965a686574c12730a7367bbe0069&from=USD&currencies=GBP
+ * TODO: Actually convert currency instead of hard-coded via
+ * http://www.apilayer.net/api/live?access_key={access key}&from=USD&currencies=GBP
  */
 
 @RestController
@@ -20,6 +20,6 @@ public class ConversionRestController {
   public ConversionResponse convert(@RequestParam("from") String fromCurrency,
                                     @RequestParam("to") String toCurrency,
                                     @RequestParam("amount") int amount) {
-    return new ConversionResponse(toCurrency, BigDecimal.valueOf(.7683 * amount));
+    return new ConversionResponse(toCurrency, BigDecimal.valueOf(.7022 * amount));
   }
 }
