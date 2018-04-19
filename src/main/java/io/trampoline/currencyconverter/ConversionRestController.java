@@ -20,6 +20,17 @@ public class ConversionRestController {
   public ConversionResponse convert(@RequestParam("from") String fromCurrency,
                                     @RequestParam("to") String toCurrency,
                                     @RequestParam("amount") int amount) {
-    return new ConversionResponse(toCurrency, BigDecimal.valueOf(.7022 * amount));
+    if (!fromCurrency.equalsIgnoreCase("USD")) {
+      throw new UnknownCurrencyException();
+    }
+    double factor;
+    if (toCurrency.equalsIgnoreCase("BTC") || toCurrency.equalsIgnoreCase("XBT")) {
+      factor = 0.00012;
+    } else if (toCurrency.equalsIgnoreCase("GBP")) {
+      factor = 0.71;
+    } else {
+      throw new UnknownCurrencyException();
+    }
+    return new ConversionResponse(toCurrency, BigDecimal.valueOf(factor * amount));
   }
 }
