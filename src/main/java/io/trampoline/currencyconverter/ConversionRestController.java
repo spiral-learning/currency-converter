@@ -27,7 +27,7 @@ public class ConversionRestController {
     if (toCurrency.equalsIgnoreCase("BTC") || toCurrency.equalsIgnoreCase("XBT")) {
       factor = 0.00012;
     } else if (toCurrency.equalsIgnoreCase("GBP")) {
-      factor = 0.71;
+      factor = 0.76;
     } else {
       throw new UnknownCurrencyException();
     }
