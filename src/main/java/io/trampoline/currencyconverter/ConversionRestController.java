@@ -23,14 +23,14 @@ public class ConversionRestController {
     if (!fromCurrency.equalsIgnoreCase("USD")) {
       throw new UnknownCurrencyException();
     }
-    double factor;
+    BigDecimal factor;
     if (toCurrency.equalsIgnoreCase("BTC") || toCurrency.equalsIgnoreCase("XBT")) {
-      factor = 0.00012;
+      factor = BigDecimal.valueOf(0.00014);
     } else if (toCurrency.equalsIgnoreCase("GBP")) {
-      factor = 0.76;
+      factor = BigDecimal.valueOf(0.76);
     } else {
       throw new UnknownCurrencyException();
     }
-    return new ConversionResponse(toCurrency, BigDecimal.valueOf(factor * amount));
+    return new ConversionResponse(toCurrency, factor.multiply(BigDecimal.valueOf(amount)));
   }
 }
