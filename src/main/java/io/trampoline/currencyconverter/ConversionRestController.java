@@ -11,7 +11,6 @@ import java.math.BigDecimal;
  * TODO: Actually convert currency instead of hard-coded via
  * http://www.apilayer.net/api/live?access_key={access key}&from=USD&currencies=GBP
  */
-
 @RestController
 @RequestMapping("/convert")
 public class ConversionRestController {
@@ -27,7 +26,9 @@ public class ConversionRestController {
     if (toCurrency.equalsIgnoreCase("BTC") || toCurrency.equalsIgnoreCase("XBT")) {
       factor = BigDecimal.valueOf(0.00014);
     } else if (toCurrency.equalsIgnoreCase("GBP")) {
-      factor = BigDecimal.valueOf(0.76);
+      factor = BigDecimal.valueOf(0.79);
+    } else if (toCurrency.equalsIgnoreCase("JPY")) {
+      factor = BigDecimal.valueOf(108);
     } else {
       throw new UnknownCurrencyException();
     }
