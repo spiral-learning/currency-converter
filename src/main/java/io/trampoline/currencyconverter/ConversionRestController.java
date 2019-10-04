@@ -24,11 +24,11 @@ public class ConversionRestController {
     }
     BigDecimal factor;
     if (toCurrency.equalsIgnoreCase("BTC") || toCurrency.equalsIgnoreCase("XBT")) {
-      factor = BigDecimal.valueOf(0.00014);
+      factor = BigDecimal.valueOf(0.00012);
     } else if (toCurrency.equalsIgnoreCase("GBP")) {
-      factor = BigDecimal.valueOf(0.79);
+      factor = BigDecimal.valueOf(0.81);
     } else if (toCurrency.equalsIgnoreCase("JPY")) {
-      factor = BigDecimal.valueOf(108);
+      factor = BigDecimal.valueOf(106.8);
     } else {
       throw new UnknownCurrencyException();
     }
