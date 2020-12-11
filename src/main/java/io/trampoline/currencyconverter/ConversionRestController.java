@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 
 /**
- * TODO: Actually convert currency instead of hard-coded via
- * http://www.apilayer.net/api/live?access_key={access key}&from=USD&currencies=GBP
+ * TODO: Actually convert currency instead of hard-coded
+ * (other data at https://apilayer.com/)
+ * Currency Layer is limited to 250 free requests per month:
+ * https://api.currencylayer.com/api/live?access_key={access key}&from=USD&currencies=GBP
+ * or
+ * https://free.currencyconverterapi.com/
  */
 @RestController
 @RequestMapping("/convert")
