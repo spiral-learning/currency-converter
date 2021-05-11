@@ -38,6 +38,15 @@ public class ConversionRestController {
     return new ConversionResponse(request.getTo(), conversionFactorFor(request.getTo()).multiply(request.getAmount()));
   }
 
+  @GetMapping("/convert-path/{from}/{to}")
+  public ConversionResponse convertPath(
+          ConversionPathDto dto,
+          @RequestParam BigDecimal amount) {
+    System.err.println(dto.getTo() + ", " + dto.getFrom());
+    return new ConversionResponse(dto.getTo(), conversionFactorFor(dto.getTo()).multiply(amount));
+  }
+
+
   private BigDecimal conversionFactorFor(String toCurrency) {
     BigDecimal factor;
     if (toCurrency.equalsIgnoreCase("BTC") || toCurrency.equalsIgnoreCase("XBT")) {
