@@ -10,12 +10,28 @@
   </style>
 </head>
 <body>
-<h2>Welcome to the Currency Conversion API server.</h2>
+<h1>Welcome to the Currency Conversion API server.</h1>
 <br/>
-You probably want to use the API at <code>/convert</code>.
+You probably want to use the API at <code>/convert</code> as shown below.
+<hr/>
 <h3>Example:</h3>
 <span style="font-family: monospace">https://jitterted-currency-conversion.herokuapp.com/convert?from=USD&to=GBP&amount=100</span>
-<br/>
-Supported target currencies are: <em>GBP</em> (British Pound), <em>JPY</em> (Japanese Yen), and <em>BTC</em> (Bitcoin)
+<div>
+  <h4>Query Parameters:</h4>
+  <ul>
+    <li><code>from=USD</code> - source currency (only <code>USD</code> supported)</li>
+    <li><code>to=JPY</code> - target currency (see supported currencies below)</li>
+    <li><code>amount=100</code> - the amount (BigDecimal) in the source currency to convert</li>
+  </ul>
+</div>
+<div>
+  <h3>Supported target currencies are:</h3>
+  <ul>
+    <li><em>GBP</em> (British Pound)</li>
+    <li><em>JPY</em> (Japanese Yen)</li>
+    <li><em>DOGE</em> (Dogecoin)</li>
+    <li><em>BTC</em> (Bitcoin)</li>
+  </ul>
+</div>
 </body>
 </html>

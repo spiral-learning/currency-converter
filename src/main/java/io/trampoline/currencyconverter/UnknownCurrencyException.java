@@ -5,4 +5,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class UnknownCurrencyException extends RuntimeException {
+    public UnknownCurrencyException() {
+        super();
+    }
+
+    public UnknownCurrencyException(String message) {
+        super(message);
+    }
 }

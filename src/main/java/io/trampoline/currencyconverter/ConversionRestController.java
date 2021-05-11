@@ -14,28 +14,43 @@ import java.math.BigDecimal;
  * https://api.currencylayer.com/api/live?access_key={access key}&from=USD&currencies=GBP
  * or
  * https://free.currencyconverterapi.com/
+ * or
+ * https://coinlayer.com/documentation
+ * for Crypto
  */
 @RestController
-@RequestMapping("/convert")
+@RequestMapping
 public class ConversionRestController {
 
-  @GetMapping
-  public ConversionResponse convert(@RequestParam("from") String fromCurrency,
+  @GetMapping("/convert")
+  public ConversionResponse convert(@RequestParam(name = "from", defaultValue = "USD") String fromCurrency,
                                     @RequestParam("to") String toCurrency,
-                                    @RequestParam("amount") int amount) {
+                                    @RequestParam("amount") BigDecimal amount) {
     if (!fromCurrency.equalsIgnoreCase("USD")) {
-      throw new UnknownCurrencyException();
+      throw new UnknownCurrencyException("Unknown 'from' currency: " + fromCurrency + ", only USD supported.");
     }
+    BigDecimal factor = conversionFactorFor(toCurrency);
+    return new ConversionResponse(toCurrency, factor.multiply(amount));
+  }
+
+  @GetMapping("/convert-dto")
+  public ConversionResponse convert2(ConversionRequestIn request) {
+    return new ConversionResponse(request.getTo(), conversionFactorFor(request.getTo()).multiply(request.getAmount()));
+  }
+
+  private BigDecimal conversionFactorFor(String toCurrency) {
     BigDecimal factor;
     if (toCurrency.equalsIgnoreCase("BTC") || toCurrency.equalsIgnoreCase("XBT")) {
-      factor = BigDecimal.valueOf(0.00056);
+      factor = BigDecimal.valueOf(0.000018); // $55,862 per BTC
     } else if (toCurrency.equalsIgnoreCase("GBP")) {
-      factor = BigDecimal.valueOf(0.758);
+      factor = BigDecimal.valueOf(0.708);
     } else if (toCurrency.equalsIgnoreCase("JPY")) {
-      factor = BigDecimal.valueOf(104.1);
+      factor = BigDecimal.valueOf(108.86);
+    } else if (toCurrency.equalsIgnoreCase("DOGE")) {
+      factor = BigDecimal.valueOf(2.15);
     } else {
-      throw new UnknownCurrencyException();
+      throw new UnknownCurrencyException("Unknown 'to' currency: " + toCurrency + ". Must be one of BTC, GBP, JPY, or DOGE");
     }
-    return new ConversionResponse(toCurrency, factor.multiply(BigDecimal.valueOf(amount)));
+    return factor;
   }
 }
